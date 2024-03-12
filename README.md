@@ -31,27 +31,27 @@ Here are the findings of my analysis based on movies released since 1990.
 - Horror movies significantly outperform movies from every other genre in terms of average ROI by almost 2-to-1, and almost 4 times the industry average of 274%.
 - Horror movies also have less competition in the genre than movies in other genres.
 
-1. **Genre and Release Month:**
+2. **Genre and Release Month:**
 
 ![Movie ROI by Genre   Month](https://github.com/Ron-Draguhon/Movie-Analysis/assets/56360122/4edc5c27-dc59-4a8c-b89c-2860f97540cd)
 
 - Horror movies tend to yield the highest average ROIs in specific months, with April, October, and January standing out as particularly lucrative release periods.
 - Seasonal trends indicate that movies in the horror genre perform exceptionally well in the lead-up to Halloween (October) and during the spring months (April).
-1. **ROI by Genre and Rating:**
+3. **ROI by Genre and Rating:**
 
 ![Movie ROI by Genre   Rating](https://github.com/Ron-Draguhon/Movie-Analysis/assets/56360122/b1a3f236-1500-4dac-b4dc-7bdee4b88654)
 
 
 - Horror movies exhibit considerably higher average ROIs compared to other genres, regardless of rating. PG-13 and R-rated horror movies, in particular, show the most robust performances, with PG-13 movies performing slightly better in terms of average ROI.
 
-1. **Runtime Considerations:**
+4. **Runtime Considerations:**
 
 ![Horror Movie ROI by Runtime](https://github.com/Ron-Draguhon/Movie-Analysis/assets/56360122/2a9cda68-354c-4b8a-ba62-688ee3d28dd9)
 
 - Shorter runtimes (under 90 minutes) are associated with the highest average ROIs in horror movies, emphasizing the value of concise storytelling.
 - Longer runtimes show diminishing returns, suggesting potential challenges in maintaining audience engagement for extended periods.
 
-1. **Budget Impact on ROI:**
+5. **Budget Impact on ROI:**
 
 ![Horror Movie ROI by Budget](https://github.com/Ron-Draguhon/Movie-Analysis/assets/56360122/3bd1ae7a-2369-49de-9b42-c4fcecd9698f)
 
@@ -60,7 +60,7 @@ Here are the findings of my analysis based on movies released since 1990.
 - Horror movies with a budget of over $50 million have an astronomical drop-off in ROI (only 0.54%).
 
 
-1. **Writer and Director Impact on ROI:**
+6. **Writer and Director Impact on ROI:**
 
 ![Movie Directors ROI](https://github.com/Ron-Draguhon/Movie-Analysis/assets/56360122/c49cef5a-05ec-461d-bbb6-d57d85df835f)
 

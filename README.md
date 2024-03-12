@@ -1,6 +1,7 @@
-**Data Analysis Report: Maximizing ROI in Movie Production** *Prepared for Fledgling Movie Studio*
+# **How to Make $1 Billion by Maximizing ROI in Movie Production** 
+*By Ron Draughon*
 
-**Problem Statement:** Fledgling Movie Studio is standing on the precipice of a significant financial opportunity. Armed with $100 million in venture capital, the studio aims to produce a movie (or group of movies) with the highest Return on Investment (ROI). By generating the highest possible ROI for their upcoming movie(s), the studio aims to secure future investments, attract potential partners, and position itself as a formidable player in the highly competitive film industry.
+**Problem Statement:** Fledgling Movie Studio is standing on the precipice of a significant financial opportunity. Armed with $100 million in venture capital, the studio aims to produce a movie (or group of movies) with the highest possible Return on Investment (ROI). By generating the highest possible ROI for the investors of their upcoming movie(s), the studio aims to secure future investments, attract potential long-term partners, and position itself as a formidable player in the highly competitive film industry.
 
 **Executive Summary:** In my analysis aimed at helping Fledgling Movie Studio maximize ROI for its upcoming movie (or movies), several key insights have been identified based on various influential factors such as genre, release date, budget, runtime, writers, and directors.
 

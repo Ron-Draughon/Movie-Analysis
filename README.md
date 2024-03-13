@@ -170,7 +170,7 @@ GROUP BY RuntimeCategory
 - Horror movies with a budget of over $50 million have an astronomical drop-off in ROI (only 0.54%).
 
 
-6. **Writer and Director Impact on ROI:**
+6. **Writer and Director Impact on ROI (Horror):**
 
 ![image](https://github.com/Ron-Draguhon/Movie-Analysis/assets/56360122/1b94b1ba-63b6-4d1e-86b9-330763ca8c57)
 
@@ -178,7 +178,7 @@ GROUP BY RuntimeCategory
 WITH HorrorMovies AS (
     SELECT
         d.director AS Director,
-        COUNT(*) AS MovieCount, -- Count the number of horror movies by each director
+        COUNT(*) AS MovieCount, 
         AVG((m.gross - m.budget) / m.budget) AS AvgROI
     FROM Movies m
     JOIN Directors d ON m.director_id = d.id
@@ -205,7 +205,7 @@ ORDER BY AvgROI_Percentage DESC;
 WITH HorrorMovies AS (
     SELECT
         w.writer AS Writer,
-        COUNT(*) AS MovieCount, -- Count the number of horror movies by each writer
+        COUNT(*) AS MovieCount, 
         AVG((m.gross - m.budget) / m.budget) AS AvgROI
     FROM Movies m
     JOIN Writers w ON m.writer_id = w.id

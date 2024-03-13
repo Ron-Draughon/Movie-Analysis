@@ -7,7 +7,7 @@ This project aims to help a fictional movie studio, Fledgling Movie Studio, maxi
 For detailed findings and recommendations, please refer to the [report.md](report.md) file.
 
 ## Data Sources:
-The dataset used for analysis was sourced from Kaggle, comprising over 7,000 movies scraped from IMDb.
+The dataset used for analysis was sourced from Kaggle, comprising over 7,000 movies scraped from IMDb found [here](https://www.kaggle.com/datasets/danielgrijalvas/movies).
 
 ## Recommendations:
 - Produce horror movies, as they have shown to yield significantly higher ROIs compared to other genres.
@@ -17,4 +17,4 @@ The dataset used for analysis was sourced from Kaggle, comprising over 7,000 mov
 - Collaborate with experienced writers and directors with a proven track record in the horror genre.
 
 ## Conclusion:
-By implementing these recommendations, Fledgling Movie Studio can strategically position itself for financial success in the highly competitive film industry.
+By implementing these recommendations, Fledgling Movie Studio can strategically position itself to make around $1 billion in profit from the original $100 million investment.

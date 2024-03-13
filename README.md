@@ -25,35 +25,145 @@ Here are the findings of my analysis based on movies released since 1990.
 1. **Horror Genre Dominates in ROI:**
 
    
-![Movies ROI by Genre](https://github.com/Ron-Draguhon/Movie-Analysis/assets/56360122/d95dffc4-2229-441d-9aa8-46957b6cddc2)
+![image](https://github.com/Ron-Draguhon/Movie-Analysis/assets/56360122/918b43c7-46be-4f0f-a78e-c7c46eb4d982)
 
+
+```
+WITH GenreROI AS (
+  SELECT
+    g.genre AS Genre,
+    AVG(m.gross) AS AvgGross,
+    AVG(m.budget) AS AvgBudget,
+    AVG(m.gross - m.budget) AS AvgProfit,
+    AVG((m.gross - m.budget) / m.budget) AS AvgROI,
+    COUNT(*) AS Num_movies
+  FROM Movies m
+  JOIN Genres g
+  ON m.genre_id = g.id
+  WHERE m.budget IS NOT NULL 
+    AND YEAR(release_date) > 1990 
+    AND title NOT IN ('The Blair Witch Project', 'Paranormal Activity')
+  GROUP BY g.genre
+)
+
+SELECT
+  Genre,
+  ROUND(AvgGross, 0) AS AvgGross,
+  ROUND(AvgBudget, 0) AS AvgBudget,
+  ROUND(AvgProfit, 0) AS AvgProfit,
+  ROUND(AvgROI * 100, 0) AS AvgROI_Percentage,
+  Num_movies
+FROM GenreROI
+WHERE Num_movies > 2 
+ORDER BY AvgROI DESC;
+```
 
 - Horror movies significantly outperform movies from every other genre in terms of average ROI by almost 2-to-1, and almost 4 times the industry average of 274%.
 - Horror movies also have less competition in the genre than movies in other genres.
 
 2. **Genre and Release Month:**
 
-![Movie ROI by Genre   Month](https://github.com/Ron-Draguhon/Movie-Analysis/assets/56360122/4edc5c27-dc59-4a8c-b89c-2860f97540cd)
+**** "The Gallows" was removed from this segment of the analysis as its inclusion caused the ROI for horror movies in July to skyrocket to over 6000% (up from 580%).
+
+![image](https://github.com/Ron-Draguhon/Movie-Analysis/assets/56360122/b8cdee8d-48f0-4fb6-accf-e4893d1661f7)
+
+```
+WITH MonthlyGenreROI AS (
+    SELECT
+        MONTH(m.release_date) AS ReleaseMonth,
+        g.genre AS Genre,
+        AVG(m.gross) AS AvgGross,
+        AVG(m.budget) AS AvgBudget,
+        AVG(m.gross - m.budget) AS AvgProfit,
+        AVG((m.gross - m.budget) / m.budget) AS AvgROI,
+		COUNT(*) AS Num_movies
+    FROM Movies m
+	JOIN Genres g
+	ON m.genre_id = g.id
+    WHERE
+        m.budget > 0
+        AND m.budget IS NOT NULL
+		--AND m.budget <= 50000000
+        AND m.title NOT IN ('The Blair Witch Project', 'Paranormal Activity')
+		AND YEAR(release_date) > 1990
+    GROUP BY MONTH(m.release_date), g.genre
+)
+
+SELECT
+    ReleaseMonth,
+    Genre,
+    ROUND(AvgGross, 0) AS AvgGross,
+    ROUND(AvgBudget, 0) AS AvgBudget,
+    ROUND(AvgProfit, 0) AS AvgProfit,
+    ROUND(AvgROI * 100, 0) AS AvgROI_Percentage,
+	Num_movies
+FROM MonthlyGenreROI
+WHERE Num_movies > 2
+ORDER BY AvgROI_Percentage DESC, ReleaseMonth
+```
 
 - Horror movies tend to yield the highest average ROIs in specific months, with April, October, and January standing out as particularly lucrative release periods.
 - Seasonal trends indicate that movies in the horror genre perform exceptionally well in the lead-up to Halloween (October) and during the spring months (April).
+
+  
 3. **ROI by Genre and Rating:**
 
-![Movie ROI by Genre   Rating](https://github.com/Ron-Draguhon/Movie-Analysis/assets/56360122/b1a3f236-1500-4dac-b4dc-7bdee4b88654)
+![image](https://github.com/Ron-Draguhon/Movie-Analysis/assets/56360122/0fb1889c-4a97-48ed-a4b5-17eeb7fd5f0a)
 
+```
+SELECT 
+    genre,
+    rating,
+    COUNT(*) AS Num_movies,
+    ROUND(AVG((gross - budget) / budget) * 100, 2) AS AvgROI_Percentage
+FROM
+    Movies m
+        JOIN
+    Genres g ON m.genre_id = g.id
+WHERE
+    budget IS NOT NULL
+        AND title NOT IN ('The Blair Witch Project' , 'Paranormal Activity')
+        AND rating IN ('G' , 'R', 'PG', 'PG-13')
+        AND YEAR(release_date) > 1990
+GROUP BY genre , rating
+HAVING COUNT(*) > 5
+ORDER BY AvgROI_Percentage DESC;
+```
 
 - Horror movies exhibit considerably higher average ROIs compared to other genres, regardless of rating. PG-13 and R-rated horror movies, in particular, show the most robust performances, with PG-13 movies performing slightly better in terms of average ROI.
 
-4. **Runtime Considerations:**
+4. **Runtime Considerations (Horror):**
 
-![Horror Movie ROI by Runtime](https://github.com/Ron-Draguhon/Movie-Analysis/assets/56360122/2a9cda68-354c-4b8a-ba62-688ee3d28dd9)
+![image](https://github.com/Ron-Draguhon/Movie-Analysis/assets/56360122/697d49f8-c0e2-487e-95f3-9dbbeb593f97)
+
+```
+SELECT 
+    RuntimeCategory, ROUND(AVG(ROI), 2) AS AvgROI
+FROM
+    (SELECT 
+        CASE
+                WHEN runtime <= 90 THEN 'Under 90 minutes'
+                WHEN runtime <= 120 THEN '90-120 minutes'
+                WHEN runtime <= 150 THEN '120-150 minutes'
+                ELSE 'Over 150 minutes'
+            END AS RuntimeCategory,
+            (gross - budget) / budget AS ROI
+    FROM
+        Movies m
+    JOIN Genres g ON m.genre_id = g.id
+    WHERE
+        budget IS NOT NULL AND genre = 'horror'
+            AND YEAR(release_date) > 1990
+            AND title NOT IN ('The Blair Witch Project' , 'Paranormal Activity')) AS RuntimeCategoryMovies
+GROUP BY RuntimeCategory
+```
 
 - Shorter runtimes (under 90 minutes) are associated with the highest average ROIs in horror movies, emphasizing the value of concise storytelling.
 - Longer runtimes show diminishing returns, suggesting potential challenges in maintaining audience engagement for extended periods.
 
-5. **Budget Impact on ROI:**
+5. **Budget Impact on ROI (Horror):**
+![image](https://github.com/Ron-Draguhon/Movie-Analysis/assets/56360122/160bfc9d-1c76-4177-b915-3cd2f4db46fa)
 
-![Horror Movie ROI by Budget](https://github.com/Ron-Draguhon/Movie-Analysis/assets/56360122/3bd1ae7a-2369-49de-9b42-c4fcecd9698f)
 
 - Horror movies with budgets under $10 million have significantly higher ROI than those with larger budgets.  
 - Budgets between $10-50 million show a significant drop in ROI for horror movies but are still at or around the industry average of 274%.
@@ -62,10 +172,68 @@ Here are the findings of my analysis based on movies released since 1990.
 
 6. **Writer and Director Impact on ROI:**
 
-![Movie Directors ROI](https://github.com/Ron-Draguhon/Movie-Analysis/assets/56360122/c49cef5a-05ec-461d-bbb6-d57d85df835f)
+![image](https://github.com/Ron-Draguhon/Movie-Analysis/assets/56360122/1b94b1ba-63b6-4d1e-86b9-330763ca8c57)
 
-![Movie Writers ROI](https://github.com/Ron-Draguhon/Movie-Analysis/assets/56360122/9c391332-a10c-48da-9ea4-24ae00592b44)
+```
+WITH HorrorMovies AS (
+    SELECT
+        d.director AS Director,
+        COUNT(*) AS MovieCount, -- Count the number of horror movies by each director
+        AVG((m.gross - m.budget) / m.budget) AS AvgROI
+    FROM Movies m
+    JOIN Directors d ON m.director_id = d.id
+	JOIN Genres g
+	ON m.genre_id = g.id
+    WHERE g.genre = 'Horror'
+        AND m.budget IS NOT NULL
+        AND title NOT IN ('The Blair Witch Project', 'Paranormal Activity')
+		AND YEAR(release_date) > 1990
+    GROUP BY d.director
+    HAVING COUNT(*) > 2
+)
 
+SELECT
+    TOP 10 Director,
+    MovieCount, -- Show the number of horror movies by each director
+    ROUND(AvgROI * 100, 2) AS AvgROI_Percentage
+FROM HorrorMovies
+ORDER BY AvgROI_Percentage DESC;
+```
+![image](https://github.com/Ron-Draguhon/Movie-Analysis/assets/56360122/b12c2db9-ab52-47d8-87ad-73e4abf95ea7)
+
+```
+WITH HorrorMovies AS (
+    SELECT
+        w.writer AS Writer,
+        COUNT(*) AS MovieCount, -- Count the number of horror movies by each writer
+        AVG((m.gross - m.budget) / m.budget) AS AvgROI
+    FROM Movies m
+    JOIN Writers w ON m.writer_id = w.id
+    JOIN Genres g ON m.genre_id = g.id
+    WHERE g.genre = 'horror'
+        AND m.budget IS NOT NULL
+        AND title NOT IN ('The Blair Witch Project', 'Paranormal Activity')
+        AND YEAR(release_date) > '1990'
+    GROUP BY w.writer
+    HAVING COUNT(*) > 2
+),
+AllMoviesAvgROI AS (
+    SELECT AVG((gross - budget) / budget) AS OverallAvgROI
+    FROM Movies
+    WHERE budget IS NOT NULL
+        AND title NOT IN ('The Blair Witch Project', 'Paranormal Activity')
+        AND YEAR(release_date) > '1990'
+)
+
+SELECT
+    Writer,
+    MovieCount, -- Show the number of horror movies by each writer
+    ROUND(AvgROI * 100, 2) AS AvgROI_Percentage
+FROM HorrorMovies
+CROSS JOIN AllMoviesAvgROI -- This is only way to join the tables since they don't have a matching column
+WHERE AvgROI > OverallAvgROI -- Higher than average ROI 
+ORDER BY AvgROI_Percentage DESC;
+```
 
 - Writer Leigh Whannell and director James Wan demonstrate consistently higher average ROIs than others in their field, averaging over 3000% ROI per film. Collaboration between these experienced individuals may enhance Fledgling Movie Studio's chances of achieving financial success.
 

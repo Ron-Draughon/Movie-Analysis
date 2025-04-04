@@ -1,4 +1,4 @@
-# Project Title: Maximizing ROI in Movie Production
+# Project Title: How to Make $1 Billion Profit in Movie Production
 
 ## Overview:
 This project aims to help a fictional movie studio, Fledgling Movie Studio, maximize Return on Investment (ROI) for its upcoming movies. The report provides insights and recommendations based on analysis of various factors such as genre, release date, budget, runtime, writers, and directors.

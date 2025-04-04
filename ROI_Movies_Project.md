@@ -1,4 +1,4 @@
-# **How to Make $1 Billion by Maximizing ROI in Movie Production** 
+# **How to Turn $100 Million into Over $1 Billion by Maximizing ROI in Movie Production** 
 *By Ron Draughon*
 
 **Problem Statement:** Fledgling Movie Studio is standing on the precipice of a significant financial opportunity. Armed with $100 million in venture capital, the studio aims to produce a movie (or group of movies) with the highest possible Return on Investment (ROI). By generating the highest possible ROI for the investors of their upcoming movie(s), the studio aims to secure future investments, attract potential long-term partners, and position itself as a formidable player in the highly competitive film industry.

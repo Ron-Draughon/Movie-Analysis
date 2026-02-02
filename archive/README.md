@@ -1,4 +1,4 @@
-## Archived Project Versions
+## Archived Project Version
 
 This folder contains an earlier iteration of the Movie ROI analysis.
 

@@ -1,20 +1,60 @@
 # Project Title: How to Make 10X Your Investment in Movie Production
 
 ## Overview:
-This project aims to help a fictional movie studio, Fledgling Movie Studio, maximize Return on Investment (ROI) for its upcoming movies. The report provides insights and recommendations based on analysis of various factors such as genre, release date, budget, runtime, writers, and directors.
+This project aims to help a fictional movie studio, Fledgling Movie Studio, maximize Return on Investment (ROI) for its upcoming movies. Using a portfolio-based ROI approach, the report provides insights and recommendations based on analysis of various factors such as genre, release date, budget, runtime, writers, and directors.
 
-## Report:
-For detailed findings and recommendations, please refer to the [Full Report](report/movie_roi_analysis_report.pdf).
+---
 
 ## Data Sources:
 The dataset used for analysis was sourced from Kaggle, comprising over 7,000 movies scraped from IMDb found [here](https://www.kaggle.com/datasets/danielgrijalvas/movies).
 
-## Recommendations:
-- Produce horror movies, as they have shown to yield significantly higher ROIs compared to other genres.
-- Focus on lower budget horror movies (under $10 million) to maximize ROI.
-- Strategically plan movie release dates within peak months for the horror genre (April, October, and January).
-- Aim for shorter runtimes (under 90 minutes) to maximize audience engagement and ROI.
-- Collaborate with experienced writers and directors with a proven track record in the horror genre.
+---
 
-## Conclusion:
-By implementing these recommendations, Fledgling Movie Studio can strategically position itself to make around $1 billion in profit from the original $100 million investment.
+## 🔥 Key Findings
+
+- Low-budget horror films (≤ $10M) generate **872% ROI**
+- PG-13 horror outperforms R-rated films (**1197% vs 759% ROI**)
+- 90–120 minute runtimes perform best (**980% ROI**)
+- October, April, January, and February are the strongest release months
+- James Wan & Leigh Whannell collaborations generate ~**4600% ROI**
+
+---
+
+## 📄 Full Report
+
+👉 [View Full Report](report/movie_roi_analysis_report.pdf)
+
+---
+
+## 🧠 Methodology
+
+- Data cleaned and standardized using **Excel**
+- Data analyzed and transformed using **SQL**
+- Portfolio-level ROI used instead of per-film averages
+- Extreme outliers removed:
+  - Blair Witch Project (~414,299%)
+  - Paranormal Activity (~1,288,939%)
+- Minimum sample thresholds applied for reliability
+
+---
+
+## 🛠 Tools Used
+
+- SQL Server  
+- Power BI  
+- Excel
+
+---
+
+## 📊 Dashboard
+
+👉 [Download Dashboard (.pbix)](dashboard/movie_roi_dashboard.pbix)
+
+Note: Open in Power BI Desktop to explore the full interactive dashboard.
+
+---
+
+## 🖼 Dashboard Preview
+
+![Full Dashboard](dashboard/screenshots/movie_dashboard.png)
+

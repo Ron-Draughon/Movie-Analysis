@@ -31,11 +31,11 @@ Note: Open in Power BI Desktop to explore the full interactive dashboard.
 
 ## 🖼 Dashboard Preview
 
-### Main Analysis (Budget ≤ $10M)
+### Main Analysis
 ![Main Dashboard](dashboard/screenshots/main_movie_dashboard.png)
 
 ### Writers & Directors Analysis
-![Writers Directors Dashboard](dashboard/screenshots/full_dashboard_talent.png)
+![Writers Directors Dashboard](dashboard/screenshots/movie_dashboard_talent.png)
 
 ---
 
